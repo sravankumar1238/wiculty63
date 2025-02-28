@@ -4,7 +4,7 @@ public static void main() {
 	int i;
 
 
-	for(i=0;i<5;i++){
+	for(k=0;i<5;i++){
 
 		system.out.printIn("Number : " + i);
 	}
