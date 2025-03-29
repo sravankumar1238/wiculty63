@@ -1,4 +1,0 @@
-# Executing docker install script, commit: 4c94a56999e10efcf48c5b8e3f6afea464f9108e
-+ sh -c apt-get -qq update >/dev/null
-E: The repository 'file:/cdrom noble Release' no longer has a Release file.
-
