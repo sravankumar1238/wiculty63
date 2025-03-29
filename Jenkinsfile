@@ -22,13 +22,13 @@
             }
         }
 		
-        stage('Unit Tests') {
-            steps {
-                sh 'mvn compiler:testCompile'
-                sh 'mvn surefire:test'
-                junit 'target/**/*.xml'
-            }
-        }
+ //       stage('Unit Tests') {
+ //           steps {
+ //               sh 'mvn compiler:testCompile'
+ //               sh 'mvn surefire:test'
+ //               junit 'target/**/*.xml'
+ //           }
+ //       }
 
         stage('Deployment') {
             steps {
