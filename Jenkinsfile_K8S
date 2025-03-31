@@ -34,11 +34,11 @@ pipeline {
 //            }
 //        }
 
-		stage('Build Images') {
-			steps {
-				sh 'docker build -t sravankumar1238/k8s-img .'
-			}
-		}
+//		stage('Build Images') {
+//			steps {
+//				sh 'docker build -t sravankumar1238/k8s-img .'
+//			}
+//		}
 
 		stage('Image Push') {
 			steps {
