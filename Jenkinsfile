@@ -32,8 +32,8 @@
 
         stage('Deployment') {
             steps {
-                sh 'sshpass -p "sravan" scp target/flipkart.war sravan@172.17.0.2:/apache-tomcat-9.0.102/webapps'
-                sh 'sshpass -p "sravan" ssh sravan@172.17.0.2 "/apache-tomcat-9.0.102/bin/startup.sh"'
+                sh 'sshpass -p "sravan" scp target/flipkart.war sravan@172.17.0.3:/apache-tomcat-9.0.102/webapps'
+                sh 'sshpass -p "sravan" ssh sravan@172.17.0.3 "/apache-tomcat-9.0.102/bin/startup.sh"'
             }
         }
     }
