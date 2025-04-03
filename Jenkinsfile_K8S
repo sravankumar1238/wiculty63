@@ -33,17 +33,16 @@ pipeline {
 //                junit 'target/**/*.xml'
 //            }
 //        }
-
-//		stage('Build Images') {
-//			steps {
-//				sh 'docker build -t sravankumar1238/k8s-img .'
-//			}
-//		}
+		stage('Build Images') {
+			steps {
+				sh 'docker build -t sravankumar1238/k8s1-img .'
+			}
+		}
 
 		stage('Image Push') {
 			steps {
 				sh 'docker login -u sravankumar1238 -p $DOCKER_HUB_PASSWORD'
-				sh 'docker push sravankumar1238/k8s-img '
+				sh 'docker push sravankumar1238/k8s1-img '
 			}
 		}
 
