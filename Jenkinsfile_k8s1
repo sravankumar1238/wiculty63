@@ -1,0 +1,56 @@
+pipeline {
+	agent any
+
+	tools {
+		jdk 'jdk11'
+	}
+
+	environment {
+		M2_INSTALL = "/usr/bin/mcn"
+	}
+
+	environment {
+		DOCKER_HUB_PASSWORD = credentials('DOCKER_HUB_PASSWORD')
+	}
+
+	stages {
+		stage {
+			steps {
+				checkout scm
+			}
+		}
+
+		stage {
+			steps {
+				sh 'mvn install -Dmaven.skip.tests=true'
+			}
+		}
+
+		stage('build images') {
+			steps {
+				sh 'docker build -t sravankumar1238/k8s2-img .'
+			}
+		}
+
+		stage('push images') {
+			steps {
+				sh 'docker login -u sravankumar1238 -p $DOCKER_HUB_PASSWORD'
+				sh 'docker push sravankumar1238/k8s2-img'
+			}
+		}
+
+		stage('cluster connect') {
+			steps {
+				sh 'gcloud container clusters get-credentials gamutkart-cluster --region us-central1 --project endless-ripple-452811-g3'
+			}
+		}
+
+		stage('k8s deployment') {
+			steps {
+				echo "jenkins is able to connect cluster and deploying images"
+				sh 'kubectl apply -f /home/vboxuser/wiculty/deployment.yaml'
+				sh 'kubectl apply -f /home/vboxuser/wiculty/service.yaml'
+			}
+		}
+	}
+}
