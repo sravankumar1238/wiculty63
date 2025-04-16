@@ -14,15 +14,23 @@ pipeline {
 	}
 
 	stages {
-		stage {
+		stage('clone-repo') {
 			steps {
 				checkout scm
 			}
 		}
 
-		stage {
+		stage('build') {
 			steps {
 				sh 'mvn install -Dmaven.skip.tests=true'
+			}
+		}
+
+		stage('unit tests') {
+			steps {
+				sh 'mvn compiler:testCompile'
+				sh 'mvn surefire:test'
+				junit 'target/**/*.xml'
 			}
 		}
 
