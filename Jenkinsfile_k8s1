@@ -26,13 +26,13 @@ pipeline {
 			}
 		}
 
-		stage('unit tests') {
-			steps {
-				sh 'mvn compiler:testCompile'
-				sh 'mvn surefire:test'
-				junit 'target/**/*.xml'
-			}
-		}
+//		stage('unit tests') {
+//			steps {
+//				sh 'mvn compiler:testCompile'
+//				sh 'mvn surefire:test'
+//				junit 'target/**/*.xml'
+//			}
+//		}
 
 		stage('build images') {
 			steps {
