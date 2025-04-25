@@ -48,7 +48,7 @@ pipeline {
 
         stage('Cluster Connect') {
            steps {
-				sh 'gcloud container clusters get-credentials wiculty63 --region us-central1 --project endless-ripple-452811-g3'
+				sh 'gcloud container clusters get-credentials gamutkart-cluster --region us-central1 --project endless-ripple-452811-g3'
            }
         }
 		
