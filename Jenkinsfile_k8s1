@@ -5,9 +5,9 @@ pipeline {
 		jdk 'jdk11'
 	}
 
-	environment {
-		M2_INSTALL = "usr/bin/mvn"
-	}
+//	environment {
+//		M2_INSTALL = "usr/bin/mvn"
+//	}
 
 	environment {
 		DOCKER_HUB_PASSWORD = ('DOCKER_HUB_PASSWORD')
