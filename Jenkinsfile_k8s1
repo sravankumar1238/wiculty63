@@ -1,0 +1,66 @@
+pipeline {
+	agent any
+	
+	tools {
+		jdk 'jdk11'
+	}
+
+	environment {
+		M2_INSTALL = "usr/bin/mvn"
+	}
+
+	environment {
+		DOCKER_HUB_PASSWORD = ('DOCKER_HUB_PASSWORD')
+	}
+
+	stages {
+		stage('clone-repo') {
+			steps {
+				checkout scm
+			}
+		}
+
+		stage('build') {
+			steps {
+				sh 'mvn install -Dmaven.test.skip=true'
+			}
+		}
+
+//		stage('unit tests') {
+//			steps {
+//				sh 'mvn compiler:testcompile'
+//				sh 'mvn surefire:test'
+//				junit 'target/**/*.xml'
+//			}
+//		}
+		
+//		stage('build images') {
+//			steps {
+//				sh 'docker build -t sravankumar1238/abc  .'
+//			}
+//		}
+
+//		stage('push image') {
+//			steps {
+//				sh 'docker login -u sravankumar1238 -p $DOCKER_HUB_PASSWORD'
+//				sh 'docker push sravankumar1238/abc'
+//			}
+//		}
+
+		stage('cluster connect') {
+			steps {
+				sh 'gcloud container clusters get-credentials guestbook --region us-central1 --project endless-ripple-452811-g3'
+			}
+		}
+
+		stage('k8s deployment') {
+			steps {
+				script {
+					echo "jenkins is able to connect to cluster and starting image deployment"
+					sh 'kubectl apply -f /home/vboxuser/wiculty/deployment.yaml'
+					sh 'kubectl apply -f /home/vboxuser/wiculty/deployment.yaml'
+				}
+			}
+		}
+	}
+}
