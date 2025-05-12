@@ -32,8 +32,8 @@ pipeline {
 
 		stage('deployment') {
 			steps {
-				sh 'sshpass -p "sravan" scp target/flipkart.war sravan@172.17.0.2:/apache-tomcat-9.0.102/webapps'
-				sh 'sshpass -p "sravan" sravan@172.17.0.2 "/apache-tomcat-9.0.102/bin/startup.sh"'
+				sh 'sshpass -p "sravan" scp target/flipkart.war sravan@172.17.0.2:/apache-tomcat-9.0.104/webapps'
+				sh 'sshpass -p "sravan" sravan@172.17.0.2 "/apache-tomcat-9.0.104/bin/startup.sh"'
 			}
 		}
 	}
