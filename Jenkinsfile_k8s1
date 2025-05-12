@@ -58,7 +58,7 @@ pipeline {
 				script {
 					echo "jenkins is able to connect to cluster and starting image deployment"
 					sh 'kubectl apply -f /home/vboxuser/wiculty/deployment.yaml'
-					sh 'kubectl apply -f /home/vboxuser/wiculty/deployment.yaml'
+					sh 'kubectl apply -f /home/vboxuser/wiculty/service.yaml'
 				}
 			}
 		}
